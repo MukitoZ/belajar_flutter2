@@ -14,6 +14,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  late bool passwordVisible;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordVisible = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +57,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             TextFormField(
               controller: passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(labelText: "Password"),
+              obscureText: !passwordVisible,
+              decoration: InputDecoration(
+                labelText: "Password",
+                hintText: "Masukkan Password Anda",
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      passwordVisible = !passwordVisible;
+                    });
+                  },
+                ),
+              ),
             ),
             const SizedBox(
               height: 16,
@@ -73,29 +94,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(
               height: 16,
             ),
-            ElevatedButton(
+            ElevatedButton.icon(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  onPrimary: Colors.white,
-                  shadowColor: Colors.greenAccent,
+                  primary: const Color.fromRGBO(59, 89, 152, 100),
+                  shadowColor: Colors.blueAccent,
                   elevation: 3,
                   minimumSize: const Size.fromHeight(50),
                 ),
-                child: const Text("Sign Up dengan Facebook")),
+                icon: Image.asset(
+                  "assets/facebook.png",
+                  width: 20,
+                  height: 20,
+                ),
+                label: const Text(
+                  "Sign up dengan Facebook",
+                  style: TextStyle(color: Colors.white),
+                )),
             const SizedBox(
               height: 16,
             ),
-            ElevatedButton(
+            ElevatedButton.icon(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  onPrimary: Colors.white,
-                  shadowColor: Colors.greenAccent,
+                  primary: Colors.white,
+                  shadowColor: Colors.grey,
                   elevation: 3,
                   minimumSize: const Size.fromHeight(50),
                 ),
-                child: const Text("Sign Up dengan Google")),
+                icon: Image.asset("assets/google.png", width: 20, height: 20),
+                label: const Text(
+                  "Sign up dengan Google",
+                  style: TextStyle(color: Colors.grey),
+                )),
             const SizedBox(
               height: 16,
             ),

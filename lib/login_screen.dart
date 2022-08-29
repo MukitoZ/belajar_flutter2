@@ -24,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     TextStyle defaultTextStyle = const TextStyle(color: Colors.grey);
     TextStyle linkTextStyle = const TextStyle(color: Colors.blue);
-    initState();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -58,20 +57,20 @@ class _LoginScreenState extends State<LoginScreen> {
             TextFormField(
               controller: passwordController,
               obscureText: !passwordVisible,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: "Password",
                 hintText: "Masukkan Password Anda",
-                // suffixIcon: IconButton(
-                //   icon: Icon(
-                //     passwordVisible ? Icons.visibility : Icons.visibility_off,
-                //     color: Theme.of(context).primaryColorDark,
-                //   ),
-                //   onPressed: (){
-                //     setState(() {
-                //       passwordVisible = !passwordVisible;
-                //     });
-                //   },
-                // ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      passwordVisible = !passwordVisible;
+                    });
+                  },
+                ),
               ),
             ),
             const SizedBox(
@@ -108,29 +107,39 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 16,
             ),
-            ElevatedButton(
+            ElevatedButton.icon(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  onPrimary: Colors.white,
-                  shadowColor: Colors.greenAccent,
+                  primary: const Color.fromRGBO(59, 89, 152, 100),
+                  shadowColor: Colors.blueAccent,
                   elevation: 3,
                   minimumSize: const Size.fromHeight(50),
                 ),
-                child: const Text("Log in dengan Facebook")),
+                icon: Image.asset(
+                  "assets/facebook.png",
+                  width: 20,
+                  height: 20,
+                ),
+                label: const Text(
+                  "Log in dengan Facebook",
+                  style: TextStyle(color: Colors.white),
+                )),
             const SizedBox(
               height: 16,
             ),
-            ElevatedButton(
+            ElevatedButton.icon(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  onPrimary: Colors.white,
-                  shadowColor: Colors.greenAccent,
+                  primary: Colors.white,
+                  shadowColor: Colors.grey,
                   elevation: 3,
                   minimumSize: const Size.fromHeight(50),
                 ),
-                child: const Text("Log in dengan Google")),
+                icon: Image.asset("assets/google.png", width: 20, height: 20),
+                label: const Text(
+                  "Log in dengan Google",
+                  style: TextStyle(color: Colors.grey),
+                )),
             const SizedBox(
               height: 16,
             ),
